@@ -2,10 +2,10 @@ start
   = bundles:parent* newline { return { bundles: bundles } }
  
 parent
-  = newline name:filename newline (separator files:(newline filename)*) newline { 
+  = newline name:filename newline (separator children:(newline filename)*) newline { 
       return {
         parent:name,
-        files: files.map(function(file){return file[1]})
+        children: children.map(function(child){return child[1]})
       }
     }
 
