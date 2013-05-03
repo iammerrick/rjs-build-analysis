@@ -1,0 +1,11 @@
+{
+  "name": "rjs-build-analysis",
+  "version": "0.0.1",
+  "dependencies": {
+    "pegjs": "~0.7.0"
+  },
+  "devDependencies": {
+    "expect": "0.0.2",
+    "chai": "~1.6.0"
+  }
+}
