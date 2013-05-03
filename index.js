@@ -5,10 +5,6 @@ var parser = require('pegjs').buildParser(
 
 exports.parse = parser.parse;
 
-
-/**
- * I'm fetching ashamed of this algorithm.
- */
 exports.duplicates = function(text) {
   var bundles = exports.parse(text).bundles;
   var nodes = {};
