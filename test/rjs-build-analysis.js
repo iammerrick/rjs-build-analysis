@@ -53,12 +53,37 @@ describe('rjs-build-analysis', function() {
   });
 
   describe('duplicates', function() {
+    var expected = {
+      'common/cookie.js': ['ApplicationBootstrap.js', 'OtherApp.js'],
+      'another/duplicate.js': ['ApplicationBootstrap.js', 'OtherApp.js', 'YetOtherApp.js']
+    };
+
     it('should check for duplicates across modules', function() {
       var output = analyzer.duplicates(fixture('duplicates-build'));
-      expect(output).to.deep.equal({
-        'common/cookie.js': ['ApplicationBootstrap.js', 'OtherApp.js'],
-        'another/duplicate.js': ['ApplicationBootstrap.js', 'OtherApp.js', 'YetOtherApp.js']
-      });
-    }); 
+      expect(output).to.deep.equal(expected);
+    });
+
+   it('should accept an AST', function() {
+     var output = analyzer.duplicates(analyzer.parse(fixture('duplicates-build')));
+     expect(output).to.deep.equal(expected);
+   });
+
+   it('should exclude checking against certain modules', function() {
+     var output = analyzer.duplicates(fixture('duplicates-build'), {
+       exclude: ['OtherApp.js']
+     });
+
+     expect(output).to.deep.equal({
+       'another/duplicate.js': ['ApplicationBootstrap.js', 'YetOtherApp.js']
+     });
+   });
+
+  });
+
+  describe('bundles', function() {
+    it('should return an array of bundles', function() {
+      var output = analyzer.bundles(fixture('multiple-build'));
+      expect(output).to.deep.equal(['ApplicationBootstrap.js', 'OtherApp.js']);
+    });
   });
 });
