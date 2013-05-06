@@ -17,4 +17,3 @@ another/duplicate.js
 YetOtherApp.js
 ----------------
 another/duplicate.js
-

@@ -5,4 +5,3 @@ common/cookie.js
 application/csrf.js
 application/EventBus.js
 vendor/moment.js
-
