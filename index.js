@@ -7,7 +7,7 @@ function getAST(textOrAST) {
   var tree = textOrAST;
 
   if (_.isString(textOrAST)) {
-    tree = exports.parse(textOrAST);
+    tree = parser.parse(textOrAST);
   }
 
   return tree;
